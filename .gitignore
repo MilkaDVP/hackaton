@@ -1,0 +1,22 @@
+# кэш тяжёлых расчётов ноутбука — пересоздаётся автоматически
+cache/
+
+# обученные модели — пересоздаются блоком 21 ноутбука
+models/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# jupyter
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# редакторы / ос
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
