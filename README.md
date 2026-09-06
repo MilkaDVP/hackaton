@@ -18,6 +18,8 @@ docker compose up --build
 
 Открыть **http://localhost:3000**. API и Swagger — на http://localhost:8000/docs.
 
+Сайт на сервере — **https://shazram.ru**.
+
 Переобучение не требуется: артефакты модели лежат в `riskml/artifacts/`
 и закоммичены (10 МБ на две модели).
 
