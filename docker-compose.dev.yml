@@ -1,0 +1,23 @@
+# Режим разработки: hot reload и монтирование исходников.
+#   docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+services:
+  backend:
+    volumes:
+      - ./backend/app:/app/app:ro
+      - ./riskml:/app/riskml:ro
+    environment:
+      LOG_LEVEL: DEBUG
+      RATE_LIMIT_PER_MINUTE: 100000
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.dev
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/index.html:/app/index.html
+    ports:
+      - "5173:5173"
+    environment:
+      API_URL: http://backend:8000

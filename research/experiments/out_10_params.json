@@ -1,0 +1,39 @@
+{
+  "ET": {
+    "n_estimators": 866,
+    "max_features": 0.1267,
+    "min_samples_leaf": 3,
+    "min_samples_split": 13,
+    "criterion": "gini",
+    "class_weight": "balanced"
+  },
+  "RF": {
+    "class_weight": "balanced_subsample",
+    "max_features": 0.3123782158161189,
+    "min_samples_leaf": 9,
+    "min_samples_split": 18,
+    "n_estimators": 774
+  },
+  "SVM": {
+    "C": 0.31489116479568624,
+    "class_weight": "balanced",
+    "gamma": 0.07114476009343425
+  },
+  "LR": {
+    "C": 0.0292
+  },
+  "drop": [
+    "fail_x_study",
+    "n_support",
+    "any_support",
+    "log_absences",
+    "parent_edu_max",
+    "study_minus_free",
+    "age_bin",
+    "age_over_17",
+    "abs_bin",
+    "goout_x_alc",
+    "abs_zero",
+    "abs_per_study"
+  ]
+}

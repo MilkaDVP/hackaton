@@ -1,0 +1,1908 @@
+{
+  "trained_at": "2026-09-06T12:49:20+00:00",
+  "versions": {
+    "python": "3.11.9",
+    "sklearn": "1.9.0",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "joblib": "1.6.0"
+  },
+  "training_data": {
+    "file": "student-por.csv",
+    "sha256": "a7594a11d7771c0efe1a740824e0e833da9c4cad07c39a9766a874575563fb3f",
+    "n_rows": 649,
+    "n_positive": 100,
+    "positive_rate": 0.15408320493066255
+  },
+  "seed": 42,
+  "drop_features": [
+    "parent_edu_mean",
+    "log_absences",
+    "study_minus_free",
+    "any_support",
+    "alc_total",
+    "alc_weekday_share",
+    "fail_x_study",
+    "goout_x_alc",
+    "n_support",
+    "age_over_17",
+    "parent_edu_max",
+    "abs_zero",
+    "abs_bin",
+    "abs_per_study"
+  ],
+  "loo": [
+    {
+      "feature": "alc_total",
+      "delta_roc": 0.0007994161801501698
+    },
+    {
+      "feature": "alc_weekday_share",
+      "delta_roc": 0.0007994161801502253
+    },
+    {
+      "feature": "n_support",
+      "delta_roc": 0.0009311926605504728
+    },
+    {
+      "feature": "any_support",
+      "delta_roc": 0.0007150750625523061
+    },
+    {
+      "feature": "abs_per_study",
+      "delta_roc": 0.003262614678899156
+    },
+    {
+      "feature": "log_absences",
+      "delta_roc": 0.00033517514595515774
+    },
+    {
+      "feature": "abs_zero",
+      "delta_roc": 0.0015247080900750998
+    },
+    {
+      "feature": "fail_x_study",
+      "delta_roc": 0.0008944954128440319
+    },
+    {
+      "feature": "has_failures",
+      "delta_roc": -0.0010011467889908254
+    },
+    {
+      "feature": "parent_edu_max",
+      "delta_roc": 0.0013889699749792261
+    },
+    {
+      "feature": "parent_edu_mean",
+      "delta_roc": 0.00023936613844871557
+    },
+    {
+      "feature": "age_over_17",
+      "delta_roc": 0.0011377189324437986
+    },
+    {
+      "feature": "goout_x_alc",
+      "delta_roc": 0.0009242076730609505
+    },
+    {
+      "feature": "study_minus_free",
+      "delta_roc": 0.00040241868223522825
+    },
+    {
+      "feature": "no_higher",
+      "delta_roc": -0.00035581734778977747
+    },
+    {
+      "feature": "risk_count",
+      "delta_roc": -0.0009791492910758426
+    },
+    {
+      "feature": "abs_bin",
+      "delta_roc": 0.0017746038365305528
+    },
+    {
+      "feature": "age_bin",
+      "delta_roc": -8.277731442862812e-05
+    }
+  ],
+  "ensemble_members": {
+    "L1": [
+      "et",
+      "rf",
+      "lr"
+    ],
+    "L2": [
+      "et",
+      "lr",
+      "svm"
+    ]
+  },
+  "metrics": {
+    "L2": {
+      "roc_auc": 0.8480635529608007,
+      "roc_auc_std": 0.0256675983107662,
+      "pr_auc": 0.529822975212457,
+      "pr_auc_std": 0.06965853747936081
+    },
+    "L1": {
+      "roc_auc": 0.9712910758965804,
+      "roc_auc_std": 0.01186429015742181,
+      "pr_auc": 0.8875507177075701,
+      "pr_auc_std": 0.04139413677346722
+    }
+  },
+  "threshold": {
+    "default": 0.593,
+    "capacity": 40,
+    "caught_at_capacity": 25,
+    "note": "порог выведен из ёмкости куратора, а не выбран как 0.5"
+  },
+  "risk_bands": {
+    "low_max": 0.154,
+    "high_min": 0.593,
+    "note": "низкий — ниже средней доли незачётов; высокий — от порога шортлиста"
+  },
+  "importances": {
+    "L2": [
+      {
+        "feature": "higher",
+        "importance": 0.05871212121212116,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.4782608695652174,
+            "yes": 0.11551724137931034
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (48%), реже: «Да» (12%)"
+        }
+      },
+      {
+        "feature": "failures",
+        "importance": 0.051136363636363605,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 0.75,
+          "mean_pass": 0.12568306010928962,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "school",
+        "importance": 0.048484848484848436,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "GP": 0.07565011820330969,
+            "MS": 0.3008849557522124
+          },
+          "worst": "MS",
+          "best": "GP",
+          "text": "чаще не сдают: «Mousinho da Silveira (MS)» (30%), реже: «Gabriel Pereira (GP)» (8%)"
+        }
+      },
+      {
+        "feature": "paid",
+        "importance": 0.007095959595959531,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.14918032786885246,
+            "yes": 0.23076923076923078
+          },
+          "worst": "yes",
+          "best": "no",
+          "text": "чаще не сдают: «Да» (23%), реже: «Нет» (15%)"
+        }
+      },
+      {
+        "feature": "guardian",
+        "importance": 0.004696969696969616,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "father": 0.10457516339869281,
+            "mother": 0.16483516483516483,
+            "other": 0.21951219512195122
+          },
+          "worst": "other",
+          "best": "father",
+          "text": "чаще не сдают: «другой» (22%), реже: «отец» (10%)"
+        }
+      },
+      {
+        "feature": "absences",
+        "importance": 0.004419191919191864,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 4.61,
+          "mean_pass": 3.4863387978142075,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "studytime",
+        "importance": 0.0030808080808080174,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 1.61,
+          "mean_pass": 1.989071038251366,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "famrel",
+        "importance": 0.0024494949494949098,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 3.83,
+          "mean_pass": 3.948998178506375,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "goout",
+        "importance": 0.0020454545454544754,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 3.37,
+          "mean_pass": 3.151183970856102,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "sex",
+        "importance": 0.0018181818181817605,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "F": 0.13054830287206268,
+            "M": 0.18796992481203006
+          },
+          "worst": "M",
+          "best": "F",
+          "text": "чаще не сдают: «мужской» (19%), реже: «женский» (13%)"
+        }
+      },
+      {
+        "feature": "nursery",
+        "importance": 0.0017171717171716727,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.1484375,
+            "yes": 0.15547024952015356
+          },
+          "worst": "yes",
+          "best": "no",
+          "text": "чаще не сдают: «Да» (16%), реже: «Нет» (15%)"
+        }
+      },
+      {
+        "feature": "freetime",
+        "importance": 0.0004545454545453742,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 3.41,
+          "mean_pass": 3.1384335154826957,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "Dalc",
+        "importance": 0.0004292929292928904,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 1.77,
+          "mean_pass": 1.453551912568306,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "G1",
+        "importance": 0.0,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 7.78,
+          "mean_pass": 12.058287795992713,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "G2",
+        "importance": 0.0,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 7.53,
+          "mean_pass": 12.306010928961749,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "health",
+        "importance": -7.5757575757604e-05,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 3.57,
+          "mean_pass": 3.530054644808743,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "Medu",
+        "importance": -0.0004797979797980245,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 2.13,
+          "mean_pass": 2.5846994535519126,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "Pstatus",
+        "importance": -0.00047979797979808003,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "A": 0.15,
+            "T": 0.1546572934973638
+          },
+          "worst": "T",
+          "best": "A",
+          "text": "чаще не сдают: «вместе» (15%), реже: «раздельно» (15%)"
+        }
+      },
+      {
+        "feature": "internet",
+        "importance": -0.0006818181818182417,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.2119205298013245,
+            "yes": 0.13654618473895583
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (21%), реже: «Да» (14%)"
+        }
+      },
+      {
+        "feature": "famsup",
+        "importance": -0.0008585858585859057,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.17131474103585656,
+            "yes": 0.14321608040201006
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (17%), реже: «Да» (14%)"
+        }
+      },
+      {
+        "feature": "Walc",
+        "importance": -0.0011111111111111738,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 2.63,
+          "mean_pass": 2.216757741347905,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "activities",
+        "importance": -0.001186868686868764,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.17065868263473055,
+            "yes": 0.1365079365079365
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (17%), реже: «Да» (14%)"
+        }
+      },
+      {
+        "feature": "address",
+        "importance": -0.0012878787878788517,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "R": 0.2233502538071066,
+            "U": 0.12389380530973451
+          },
+          "worst": "R",
+          "best": "U",
+          "text": "чаще не сдают: «село» (22%), реже: «город» (12%)"
+        }
+      },
+      {
+        "feature": "traveltime",
+        "importance": -0.001388888888888981,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 1.67,
+          "mean_pass": 1.5500910746812386,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "age",
+        "importance": -0.0015656565656566451,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 17.06,
+          "mean_pass": 16.686703096539162,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "Fjob",
+        "importance": -0.001792929292929346,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "at_home": 0.16666666666666666,
+            "health": 0.13043478260869565,
+            "other": 0.14713896457765668,
+            "services": 0.18232044198895028,
+            "teacher": 0.08333333333333333
+          },
+          "worst": "services",
+          "best": "teacher",
+          "text": "чаще не сдают: «сфера услуг» (18%), реже: «преподаватель» (8%)"
+        }
+      },
+      {
+        "feature": "famsize",
+        "importance": -0.0018181818181818854,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "GT3": 0.16630196936542668,
+            "LE3": 0.125
+          },
+          "worst": "GT3",
+          "best": "LE3",
+          "text": "чаще не сдают: «больше 3 человек» (17%), реже: «до 3 человек» (12%)"
+        }
+      },
+      {
+        "feature": "schoolsup",
+        "importance": -0.0018686868686869224,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.15834767641996558,
+            "yes": 0.11764705882352941
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (16%), реже: «Да» (12%)"
+        }
+      },
+      {
+        "feature": "Mjob",
+        "importance": -0.0026767676767677356,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "at_home": 0.21481481481481482,
+            "health": 0.125,
+            "other": 0.16279069767441862,
+            "services": 0.13970588235294118,
+            "teacher": 0.05555555555555555
+          },
+          "worst": "at_home",
+          "best": "teacher",
+          "text": "чаще не сдают: «не работает / дома» (21%), реже: «преподаватель» (6%)"
+        }
+      },
+      {
+        "feature": "reason",
+        "importance": -0.002803030303030349,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "course": 0.19298245614035087,
+            "home": 0.11409395973154363,
+            "other": 0.25,
+            "reputation": 0.06993006993006994
+          },
+          "worst": "other",
+          "best": "reputation",
+          "text": "чаще не сдают: «другое» (25%), реже: «репутация» (7%)"
+        }
+      },
+      {
+        "feature": "Fedu",
+        "importance": -0.0033838383838384473,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 1.93,
+          "mean_pass": 2.3752276867030964,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "romantic",
+        "importance": -0.004015151515151583,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.13170731707317074,
+            "yes": 0.19246861924686193
+          },
+          "worst": "yes",
+          "best": "no",
+          "text": "чаще не сдают: «Да» (19%), реже: «Нет» (13%)"
+        }
+      }
+    ],
+    "L1": [
+      {
+        "feature": "G2",
+        "importance": 0.13118686868686866,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 7.53,
+          "mean_pass": 12.306010928961749,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "G1",
+        "importance": 0.04257575757575756,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 7.78,
+          "mean_pass": 12.058287795992713,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "famrel",
+        "importance": 0.001060606060605998,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 3.83,
+          "mean_pass": 3.948998178506375,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "Fedu",
+        "importance": 0.0007575757575757347,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 1.93,
+          "mean_pass": 2.3752276867030964,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "health",
+        "importance": 0.0005555555555555591,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 3.57,
+          "mean_pass": 3.530054644808743,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "address",
+        "importance": 0.0004292929292929043,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "R": 0.2233502538071066,
+            "U": 0.12389380530973451
+          },
+          "worst": "R",
+          "best": "U",
+          "text": "чаще не сдают: «село» (22%), реже: «город» (12%)"
+        }
+      },
+      {
+        "feature": "school",
+        "importance": 0.00042929292929287655,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "GP": 0.07565011820330969,
+            "MS": 0.3008849557522124
+          },
+          "worst": "MS",
+          "best": "GP",
+          "text": "чаще не сдают: «Mousinho da Silveira (MS)» (30%), реже: «Gabriel Pereira (GP)» (8%)"
+        }
+      },
+      {
+        "feature": "failures",
+        "importance": 0.00037878787878785347,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 0.75,
+          "mean_pass": 0.12568306010928962,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "Walc",
+        "importance": 0.00032828282828278876,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 2.63,
+          "mean_pass": 2.216757741347905,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "higher",
+        "importance": 0.00025252525252519864,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.4782608695652174,
+            "yes": 0.11551724137931034
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (48%), реже: «Да» (12%)"
+        }
+      },
+      {
+        "feature": "Dalc",
+        "importance": 0.0001515151515151386,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 1.77,
+          "mean_pass": 1.453551912568306,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "activities",
+        "importance": 0.00010101010101010166,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.17065868263473055,
+            "yes": 0.1365079365079365
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (17%), реже: «Да» (14%)"
+        }
+      },
+      {
+        "feature": "nursery",
+        "importance": 7.575757575754849e-05,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.1484375,
+            "yes": 0.15547024952015356
+          },
+          "worst": "yes",
+          "best": "no",
+          "text": "чаще не сдают: «Да» (16%), реже: «Нет» (15%)"
+        }
+      },
+      {
+        "feature": "famsize",
+        "importance": 5.050505050505083e-05,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "GT3": 0.16630196936542668,
+            "LE3": 0.125
+          },
+          "worst": "GT3",
+          "best": "LE3",
+          "text": "чаще не сдают: «больше 3 человек» (17%), реже: «до 3 человек» (12%)"
+        }
+      },
+      {
+        "feature": "Pstatus",
+        "importance": 5.050505050505083e-05,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "A": 0.15,
+            "T": 0.1546572934973638
+          },
+          "worst": "T",
+          "best": "A",
+          "text": "чаще не сдают: «вместе» (15%), реже: «раздельно» (15%)"
+        }
+      },
+      {
+        "feature": "reason",
+        "importance": -2.5252525252539293e-05,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "course": 0.19298245614035087,
+            "home": 0.11409395973154363,
+            "other": 0.25,
+            "reputation": 0.06993006993006994
+          },
+          "worst": "other",
+          "best": "reputation",
+          "text": "чаще не сдают: «другое» (25%), реже: «репутация» (7%)"
+        }
+      },
+      {
+        "feature": "schoolsup",
+        "importance": -0.00012626262626262708,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.15834767641996558,
+            "yes": 0.11764705882352941
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (16%), реже: «Да» (12%)"
+        }
+      },
+      {
+        "feature": "traveltime",
+        "importance": -0.00020202020202020332,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 1.67,
+          "mean_pass": 1.5500910746812386,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "romantic",
+        "importance": -0.0003030303030302772,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.13170731707317074,
+            "yes": 0.19246861924686193
+          },
+          "worst": "yes",
+          "best": "no",
+          "text": "чаще не сдают: «Да» (19%), реже: «Нет» (13%)"
+        }
+      },
+      {
+        "feature": "age",
+        "importance": -0.00040404040404039276,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 17.06,
+          "mean_pass": 16.686703096539162,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "internet",
+        "importance": -0.00045454545454547135,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.2119205298013245,
+            "yes": 0.13654618473895583
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (21%), реже: «Да» (14%)"
+        }
+      },
+      {
+        "feature": "famsup",
+        "importance": -0.0004797979797979829,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.17131474103585656,
+            "yes": 0.14321608040201006
+          },
+          "worst": "no",
+          "best": "yes",
+          "text": "чаще не сдают: «Нет» (17%), реже: «Да» (14%)"
+        }
+      },
+      {
+        "feature": "absences",
+        "importance": -0.000555555555555573,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 4.61,
+          "mean_pass": 3.4863387978142075,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "paid",
+        "importance": -0.0005808080808080845,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "no": 0.14918032786885246,
+            "yes": 0.23076923076923078
+          },
+          "worst": "yes",
+          "best": "no",
+          "text": "чаще не сдают: «Да» (23%), реже: «Нет» (15%)"
+        }
+      },
+      {
+        "feature": "Mjob",
+        "importance": -0.00060606060606061,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "at_home": 0.21481481481481482,
+            "health": 0.125,
+            "other": 0.16279069767441862,
+            "services": 0.13970588235294118,
+            "teacher": 0.05555555555555555
+          },
+          "worst": "at_home",
+          "best": "teacher",
+          "text": "чаще не сдают: «не работает / дома» (21%), реже: «преподаватель» (6%)"
+        }
+      },
+      {
+        "feature": "Medu",
+        "importance": -0.0008333333333333803,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 2.13,
+          "mean_pass": 2.5846994535519126,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "goout",
+        "importance": -0.000858585858585878,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 3.37,
+          "mean_pass": 3.151183970856102,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "freetime",
+        "importance": -0.0008838383838383479,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — выше риск",
+          "mean_fail": 3.41,
+          "mean_pass": 3.1384335154826957,
+          "sign": 1
+        }
+      },
+      {
+        "feature": "sex",
+        "importance": -0.000883838383838445,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "F": 0.13054830287206268,
+            "M": 0.18796992481203006
+          },
+          "worst": "M",
+          "best": "F",
+          "text": "чаще не сдают: «мужской» (19%), реже: «женский» (13%)"
+        }
+      },
+      {
+        "feature": "guardian",
+        "importance": -0.0011111111111111183,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "father": 0.10457516339869281,
+            "mother": 0.16483516483516483,
+            "other": 0.21951219512195122
+          },
+          "worst": "other",
+          "best": "father",
+          "text": "чаще не сдают: «другой» (22%), реже: «отец» (10%)"
+        }
+      },
+      {
+        "feature": "studytime",
+        "importance": -0.0012373737373737315,
+        "direction": {
+          "kind": "numeric",
+          "text": "больше — ниже риск",
+          "mean_fail": 1.61,
+          "mean_pass": 1.989071038251366,
+          "sign": -1
+        }
+      },
+      {
+        "feature": "Fjob",
+        "importance": -0.0015404040404040364,
+        "direction": {
+          "kind": "categorical",
+          "rates": {
+            "at_home": 0.16666666666666666,
+            "health": 0.13043478260869565,
+            "other": 0.14713896457765668,
+            "services": 0.18232044198895028,
+            "teacher": 0.08333333333333333
+          },
+          "worst": "services",
+          "best": "teacher",
+          "text": "чаще не сдают: «сфера услуг» (18%), реже: «преподаватель» (8%)"
+        }
+      }
+    ]
+  },
+  "background": {
+    "school": {
+      "kind": "categorical",
+      "mode": "GP",
+      "freq": {
+        "GP": 0.6517719568567026,
+        "MS": 0.34822804314329736
+      }
+    },
+    "sex": {
+      "kind": "categorical",
+      "mode": "F",
+      "freq": {
+        "F": 0.5901386748844376,
+        "M": 0.4098613251155624
+      }
+    },
+    "age": {
+      "kind": "numeric",
+      "median": 17.0,
+      "mean": 16.7442218798151,
+      "p25": 16.0,
+      "p75": 18.0
+    },
+    "address": {
+      "kind": "categorical",
+      "mode": "U",
+      "freq": {
+        "U": 0.6964560862865947,
+        "R": 0.3035439137134052
+      }
+    },
+    "famsize": {
+      "kind": "categorical",
+      "mode": "GT3",
+      "freq": {
+        "GT3": 0.7041602465331279,
+        "LE3": 0.29583975346687214
+      }
+    },
+    "Pstatus": {
+      "kind": "categorical",
+      "mode": "T",
+      "freq": {
+        "T": 0.8767334360554699,
+        "A": 0.12326656394453005
+      }
+    },
+    "Medu": {
+      "kind": "numeric",
+      "median": 2.0,
+      "mean": 2.514637904468413,
+      "p25": 2.0,
+      "p75": 4.0
+    },
+    "Fedu": {
+      "kind": "numeric",
+      "median": 2.0,
+      "mean": 2.3066255778120186,
+      "p25": 1.0,
+      "p75": 3.0
+    },
+    "Mjob": {
+      "kind": "categorical",
+      "mode": "other",
+      "freq": {
+        "other": 0.3975346687211094,
+        "services": 0.20955315870570107,
+        "at_home": 0.20801232665639446,
+        "teacher": 0.11093990755007704,
+        "health": 0.07395993836671803
+      }
+    },
+    "Fjob": {
+      "kind": "categorical",
+      "mode": "other",
+      "freq": {
+        "other": 0.5654853620955316,
+        "services": 0.27889060092449924,
+        "at_home": 0.06471494607087827,
+        "teacher": 0.05546995377503852,
+        "health": 0.03543913713405239
+      }
+    },
+    "reason": {
+      "kind": "categorical",
+      "mode": "course",
+      "freq": {
+        "course": 0.4391371340523883,
+        "home": 0.2295839753466872,
+        "reputation": 0.22033898305084745,
+        "other": 0.11093990755007704
+      }
+    },
+    "guardian": {
+      "kind": "categorical",
+      "mode": "mother",
+      "freq": {
+        "mother": 0.7010785824345146,
+        "father": 0.2357473035439137,
+        "other": 0.06317411402157165
+      }
+    },
+    "traveltime": {
+      "kind": "numeric",
+      "median": 1.0,
+      "mean": 1.568567026194145,
+      "p25": 1.0,
+      "p75": 2.0
+    },
+    "studytime": {
+      "kind": "numeric",
+      "median": 2.0,
+      "mean": 1.9306625577812018,
+      "p25": 1.0,
+      "p75": 2.0
+    },
+    "failures": {
+      "kind": "numeric",
+      "median": 0.0,
+      "mean": 0.2218798151001541,
+      "p25": 0.0,
+      "p75": 0.0
+    },
+    "schoolsup": {
+      "kind": "categorical",
+      "mode": "no",
+      "freq": {
+        "no": 0.8952234206471494,
+        "yes": 0.10477657935285054
+      }
+    },
+    "famsup": {
+      "kind": "categorical",
+      "mode": "yes",
+      "freq": {
+        "yes": 0.613251155624037,
+        "no": 0.386748844375963
+      }
+    },
+    "paid": {
+      "kind": "categorical",
+      "mode": "no",
+      "freq": {
+        "no": 0.9399075500770416,
+        "yes": 0.060092449922958396
+      }
+    },
+    "activities": {
+      "kind": "categorical",
+      "mode": "no",
+      "freq": {
+        "no": 0.514637904468413,
+        "yes": 0.48536209553158705
+      }
+    },
+    "nursery": {
+      "kind": "categorical",
+      "mode": "yes",
+      "freq": {
+        "yes": 0.802773497688752,
+        "no": 0.19722650231124808
+      }
+    },
+    "higher": {
+      "kind": "categorical",
+      "mode": "yes",
+      "freq": {
+        "yes": 0.8936825885978429,
+        "no": 0.10631741140215717
+      }
+    },
+    "internet": {
+      "kind": "categorical",
+      "mode": "yes",
+      "freq": {
+        "yes": 0.7673343605546995,
+        "no": 0.23266563944530047
+      }
+    },
+    "romantic": {
+      "kind": "categorical",
+      "mode": "no",
+      "freq": {
+        "no": 0.6317411402157165,
+        "yes": 0.3682588597842835
+      }
+    },
+    "famrel": {
+      "kind": "numeric",
+      "median": 4.0,
+      "mean": 3.930662557781202,
+      "p25": 4.0,
+      "p75": 5.0
+    },
+    "freetime": {
+      "kind": "numeric",
+      "median": 3.0,
+      "mean": 3.180277349768875,
+      "p25": 3.0,
+      "p75": 4.0
+    },
+    "goout": {
+      "kind": "numeric",
+      "median": 3.0,
+      "mean": 3.184899845916795,
+      "p25": 2.0,
+      "p75": 4.0
+    },
+    "Dalc": {
+      "kind": "numeric",
+      "median": 1.0,
+      "mean": 1.50231124807396,
+      "p25": 1.0,
+      "p75": 2.0
+    },
+    "Walc": {
+      "kind": "numeric",
+      "median": 2.0,
+      "mean": 2.280431432973806,
+      "p25": 1.0,
+      "p75": 3.0
+    },
+    "health": {
+      "kind": "numeric",
+      "median": 4.0,
+      "mean": 3.536209553158706,
+      "p25": 2.0,
+      "p75": 5.0
+    },
+    "absences": {
+      "kind": "numeric",
+      "median": 2.0,
+      "mean": 3.6594761171032357,
+      "p25": 0.0,
+      "p75": 6.0
+    },
+    "G1": {
+      "kind": "numeric",
+      "median": 11.0,
+      "mean": 11.399075500770415,
+      "p25": 10.0,
+      "p75": 13.0
+    },
+    "G2": {
+      "kind": "numeric",
+      "median": 11.0,
+      "mean": 11.570107858243452,
+      "p25": 10.0,
+      "p75": 13.0
+    }
+  },
+  "expected_columns": {
+    "required_l2": [
+      "failures",
+      "absences",
+      "studytime",
+      "traveltime",
+      "schoolsup",
+      "famsup",
+      "paid",
+      "activities",
+      "higher",
+      "nursery",
+      "reason",
+      "school",
+      "age",
+      "sex",
+      "address",
+      "famrel",
+      "freetime",
+      "goout",
+      "Dalc",
+      "Walc",
+      "health",
+      "romantic",
+      "internet",
+      "Medu",
+      "Fedu",
+      "Mjob",
+      "Fjob",
+      "guardian",
+      "famsize",
+      "Pstatus"
+    ],
+    "grades": [
+      "G1",
+      "G2"
+    ],
+    "never_a_feature": [
+      "G3",
+      "no_pass"
+    ]
+  },
+  "schema": {
+    "groups": [
+      {
+        "id": "study",
+        "label": "Успеваемость и учебное поведение",
+        "hint": "Как идёт учёба и сколько времени на неё уходит"
+      },
+      {
+        "id": "personal",
+        "label": "Личное",
+        "hint": "Возраст, здоровье, свободное время"
+      },
+      {
+        "id": "family",
+        "label": "Семья",
+        "hint": "Родители, опекун, состав семьи"
+      },
+      {
+        "id": "grades",
+        "label": "Оценки за контрольные",
+        "hint": "Только для прогноза конца семестра (уровень L1)"
+      }
+    ],
+    "features": [
+      {
+        "name": "failures",
+        "label": "Прошлые незачёты по предмету",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "0": "ни разу",
+          "1": "один раз",
+          "2": "два раза",
+          "3": "три и более"
+        },
+        "default": 0,
+        "hint": "Сколько раз студент уже не сдавал этот предмет",
+        "self_label": "Сколько раз вы уже не сдавали этот предмет",
+        "self_hint": "Считаются только прошлые попытки по этому предмету"
+      },
+      {
+        "name": "absences",
+        "label": "Пропущено занятий",
+        "group": "study",
+        "kind": "int",
+        "min": 0,
+        "max": 93,
+        "default": 4,
+        "hint": "Количество пропущенных занятий за год",
+        "values": {},
+        "self_label": "Сколько занятий вы пропустили",
+        "self_hint": "Примерно, за учебный год"
+      },
+      {
+        "name": "studytime",
+        "label": "Самоподготовка в неделю",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "1": "менее 2 часов",
+          "2": "2–5 часов",
+          "3": "5–10 часов",
+          "4": "более 10 часов"
+        },
+        "default": 2,
+        "hint": "Сколько часов в неделю студент занимается самостоятельно",
+        "self_label": "Сколько часов в неделю занимаетесь самостоятельно",
+        "self_hint": null
+      },
+      {
+        "name": "traveltime",
+        "label": "Дорога до учёбы",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "1": "менее 15 минут",
+          "2": "15–30 минут",
+          "3": "30–60 минут",
+          "4": "больше часа"
+        },
+        "default": 1,
+        "hint": null,
+        "self_label": "Сколько добираетесь до учёбы",
+        "self_hint": null
+      },
+      {
+        "name": "schoolsup",
+        "label": "Получает дополнительную поддержку от школы",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "no",
+        "hint": null,
+        "self_label": "Получаете дополнительную поддержку от школы",
+        "self_hint": null
+      },
+      {
+        "name": "famsup",
+        "label": "Семья помогает с учёбой",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "yes",
+        "hint": null,
+        "self_label": "Семья помогает вам с учёбой",
+        "self_hint": null
+      },
+      {
+        "name": "paid",
+        "label": "Ходит на платные занятия по предмету",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "no",
+        "hint": null,
+        "self_label": "Ходите на платные занятия по этому предмету",
+        "self_hint": null
+      },
+      {
+        "name": "activities",
+        "label": "Занимается чем-то помимо учёбы",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "yes",
+        "hint": null,
+        "self_label": "Занимаетесь чем-то помимо учёбы",
+        "self_hint": "Спорт, кружки, работа"
+      },
+      {
+        "name": "higher",
+        "label": "Планирует учиться дальше",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "yes",
+        "hint": "Один из трёх главных факторов риска",
+        "self_label": "Планируете учиться дальше",
+        "self_hint": null
+      },
+      {
+        "name": "nursery",
+        "label": "Ходил в детский сад",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "yes",
+        "hint": null,
+        "self_label": "Ходили в детский сад",
+        "self_hint": null
+      },
+      {
+        "name": "reason",
+        "label": "Почему выбрал это учебное заведение",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "home": "близко к дому",
+          "reputation": "репутация",
+          "course": "из-за программы",
+          "other": "другое"
+        },
+        "default": "course",
+        "hint": null,
+        "self_label": "Почему вы выбрали это учебное заведение",
+        "self_hint": null
+      },
+      {
+        "name": "school",
+        "label": "Учебное заведение",
+        "group": "study",
+        "kind": "choice",
+        "values": {
+          "GP": "Gabriel Pereira (GP)",
+          "MS": "Mousinho da Silveira (MS)"
+        },
+        "default": "GP",
+        "hint": "Сильный предиктор, но не рычаг: внутри одной школы одинаков у всех",
+        "self_label": "Где вы учитесь",
+        "self_hint": null
+      },
+      {
+        "name": "age",
+        "label": "Возраст",
+        "group": "personal",
+        "kind": "int",
+        "min": 15,
+        "max": 22,
+        "default": 17,
+        "hint": null,
+        "values": {},
+        "self_label": "Ваш возраст",
+        "self_hint": null
+      },
+      {
+        "name": "sex",
+        "label": "Пол",
+        "group": "personal",
+        "kind": "choice",
+        "values": {
+          "F": "женский",
+          "M": "мужской"
+        },
+        "default": "F",
+        "hint": null,
+        "self_label": "Ваш пол",
+        "self_hint": null
+      },
+      {
+        "name": "address",
+        "label": "Где живёт",
+        "group": "personal",
+        "kind": "choice",
+        "values": {
+          "U": "город",
+          "R": "село"
+        },
+        "default": "U",
+        "hint": null,
+        "self_label": "Где вы живёте",
+        "self_hint": null
+      },
+      {
+        "name": "famrel",
+        "label": "Отношения в семье",
+        "group": "personal",
+        "kind": "scale",
+        "min": 1,
+        "max": 5,
+        "hint": null,
+        "values": {
+          "1": "очень плохо",
+          "2": "плохо",
+          "3": "средне",
+          "4": "хорошо",
+          "5": "очень хорошо"
+        },
+        "default": 3,
+        "self_label": "Как вы оцениваете отношения в семье",
+        "self_hint": null
+      },
+      {
+        "name": "freetime",
+        "label": "Свободное время после учёбы",
+        "group": "personal",
+        "kind": "scale",
+        "min": 1,
+        "max": 5,
+        "hint": null,
+        "values": {
+          "1": "очень мало",
+          "2": "мало",
+          "3": "средне",
+          "4": "много",
+          "5": "очень много"
+        },
+        "default": 3,
+        "self_label": "Сколько у вас свободного времени после учёбы",
+        "self_hint": null
+      },
+      {
+        "name": "goout",
+        "label": "Как часто встречается с друзьями",
+        "group": "personal",
+        "kind": "scale",
+        "min": 1,
+        "max": 5,
+        "hint": null,
+        "values": {
+          "1": "очень мало",
+          "2": "мало",
+          "3": "средне",
+          "4": "много",
+          "5": "очень много"
+        },
+        "default": 3,
+        "self_label": "Как часто вы встречаетесь с друзьями",
+        "self_hint": null
+      },
+      {
+        "name": "Dalc",
+        "label": "Алкоголь в будни",
+        "group": "personal",
+        "kind": "scale",
+        "min": 1,
+        "max": 5,
+        "hint": null,
+        "values": {
+          "1": "очень мало",
+          "2": "мало",
+          "3": "средне",
+          "4": "много",
+          "5": "очень много"
+        },
+        "default": 3,
+        "self_label": "Алкоголь в будни",
+        "self_hint": "Вопрос нужен модели; ответы никуда не сохраняются"
+      },
+      {
+        "name": "Walc",
+        "label": "Алкоголь в выходные",
+        "group": "personal",
+        "kind": "scale",
+        "min": 1,
+        "max": 5,
+        "hint": null,
+        "values": {
+          "1": "очень мало",
+          "2": "мало",
+          "3": "средне",
+          "4": "много",
+          "5": "очень много"
+        },
+        "default": 3,
+        "self_label": "Алкоголь в выходные",
+        "self_hint": null
+      },
+      {
+        "name": "health",
+        "label": "Самооценка здоровья",
+        "group": "personal",
+        "kind": "scale",
+        "min": 1,
+        "max": 5,
+        "hint": null,
+        "values": {
+          "1": "очень плохо",
+          "2": "плохо",
+          "3": "средне",
+          "4": "хорошо",
+          "5": "очень хорошо"
+        },
+        "default": 3,
+        "self_label": "Как вы оцениваете своё здоровье",
+        "self_hint": null
+      },
+      {
+        "name": "romantic",
+        "label": "Есть романтические отношения",
+        "group": "personal",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "no",
+        "hint": null,
+        "self_label": "Есть ли у вас романтические отношения",
+        "self_hint": null
+      },
+      {
+        "name": "internet",
+        "label": "Интернет дома",
+        "group": "personal",
+        "kind": "choice",
+        "values": {
+          "yes": "Да",
+          "no": "Нет"
+        },
+        "default": "yes",
+        "hint": null,
+        "self_label": "Есть ли дома интернет",
+        "self_hint": null
+      },
+      {
+        "name": "Medu",
+        "label": "Образование матери",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "0": "нет образования",
+          "1": "начальное (4 класса)",
+          "2": "5–9 классов",
+          "3": "среднее специальное",
+          "4": "высшее"
+        },
+        "default": 2,
+        "hint": null,
+        "self_label": "Образование вашей матери",
+        "self_hint": null
+      },
+      {
+        "name": "Fedu",
+        "label": "Образование отца",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "0": "нет образования",
+          "1": "начальное (4 класса)",
+          "2": "5–9 классов",
+          "3": "среднее специальное",
+          "4": "высшее"
+        },
+        "default": 2,
+        "hint": null,
+        "self_label": "Образование вашего отца",
+        "self_hint": null
+      },
+      {
+        "name": "Mjob",
+        "label": "Работа матери",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "teacher": "преподаватель",
+          "health": "медицина",
+          "services": "сфера услуг",
+          "at_home": "не работает / дома",
+          "other": "другое"
+        },
+        "default": "other",
+        "hint": null,
+        "self_label": "Кем работает ваша мать",
+        "self_hint": null
+      },
+      {
+        "name": "Fjob",
+        "label": "Работа отца",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "teacher": "преподаватель",
+          "health": "медицина",
+          "services": "сфера услуг",
+          "at_home": "не работает / дома",
+          "other": "другое"
+        },
+        "default": "other",
+        "hint": null,
+        "self_label": "Кем работает ваш отец",
+        "self_hint": null
+      },
+      {
+        "name": "guardian",
+        "label": "Кто опекун",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "mother": "мать",
+          "father": "отец",
+          "other": "другой"
+        },
+        "default": "mother",
+        "hint": null,
+        "self_label": "Кто ваш опекун",
+        "self_hint": null
+      },
+      {
+        "name": "famsize",
+        "label": "Размер семьи",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "LE3": "до 3 человек",
+          "GT3": "больше 3 человек"
+        },
+        "default": "GT3",
+        "hint": null,
+        "self_label": "Размер вашей семьи",
+        "self_hint": null
+      },
+      {
+        "name": "Pstatus",
+        "label": "Родители живут вместе",
+        "group": "family",
+        "kind": "choice",
+        "values": {
+          "T": "вместе",
+          "A": "раздельно"
+        },
+        "default": "T",
+        "hint": null,
+        "self_label": "Родители живут вместе",
+        "self_hint": null
+      },
+      {
+        "name": "G1",
+        "label": "Балл за первую контрольную",
+        "group": "grades",
+        "kind": "int",
+        "min": 0,
+        "max": 20,
+        "default": 11,
+        "hint": "Только для прогноза конца семестра",
+        "values": {},
+        "self_label": null,
+        "self_hint": null
+      },
+      {
+        "name": "G2",
+        "label": "Балл за вторую контрольную",
+        "group": "grades",
+        "kind": "int",
+        "min": 0,
+        "max": 20,
+        "default": 11,
+        "hint": "Только для прогноза конца семестра",
+        "values": {},
+        "self_label": null,
+        "self_hint": null
+      }
+    ],
+    "survey_features": [
+      "failures",
+      "absences",
+      "studytime",
+      "traveltime",
+      "schoolsup",
+      "famsup",
+      "paid",
+      "activities",
+      "higher",
+      "nursery",
+      "reason",
+      "school",
+      "age",
+      "sex",
+      "address",
+      "famrel",
+      "freetime",
+      "goout",
+      "Dalc",
+      "Walc",
+      "health",
+      "romantic",
+      "internet",
+      "Medu",
+      "Fedu",
+      "Mjob",
+      "Fjob",
+      "guardian",
+      "famsize",
+      "Pstatus"
+    ],
+    "survey_steps": [
+      {
+        "id": "study",
+        "title": "Учёба",
+        "features": [
+          "failures",
+          "absences",
+          "studytime",
+          "higher",
+          "paid",
+          "schoolsup",
+          "famsup",
+          "activities",
+          "traveltime",
+          "reason",
+          "school",
+          "nursery"
+        ]
+      },
+      {
+        "id": "personal",
+        "title": "О себе",
+        "features": [
+          "age",
+          "sex",
+          "address",
+          "health",
+          "freetime",
+          "goout",
+          "romantic",
+          "internet",
+          "Dalc",
+          "Walc"
+        ]
+      },
+      {
+        "id": "family",
+        "title": "Семья",
+        "features": [
+          "Medu",
+          "Fedu",
+          "Mjob",
+          "Fjob",
+          "guardian",
+          "famsize",
+          "Pstatus",
+          "famrel"
+        ]
+      }
+    ],
+    "required_l2": [
+      "failures",
+      "absences",
+      "studytime",
+      "traveltime",
+      "schoolsup",
+      "famsup",
+      "paid",
+      "activities",
+      "higher",
+      "nursery",
+      "reason",
+      "school",
+      "age",
+      "sex",
+      "address",
+      "famrel",
+      "freetime",
+      "goout",
+      "Dalc",
+      "Walc",
+      "health",
+      "romantic",
+      "internet",
+      "Medu",
+      "Fedu",
+      "Mjob",
+      "Fjob",
+      "guardian",
+      "famsize",
+      "Pstatus"
+    ],
+    "grade_features": [
+      "G1",
+      "G2"
+    ]
+  }
+}

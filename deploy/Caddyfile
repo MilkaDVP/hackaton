@@ -1,0 +1,51 @@
+# Caddy сам получает и продлевает сертификат Let's Encrypt.
+# Наружу торчит только он; backend и frontend портов на хост не публикуют.
+
+{
+	email {$ACME_EMAIL}
+	# Логи в stdout — их подхватывает docker с ротацией из daemon.json
+	log {
+		output stdout
+		format console
+	}
+}
+
+{$DOMAIN}, www.{$DOMAIN} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options    "nosniff"
+		X-Frame-Options           "SAMEORIGIN"
+		Referrer-Policy           "no-referrer"
+		# Приложение целиком своё: скрипты и стили только со своего origin.
+		# 'unsafe-inline' для стилей нужен из-за инлайновых стилей recharts.
+		Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'"
+		-Server
+	}
+
+	# --- доступ открыт ---
+	# Сайт работает без пароля по решению владельца. Это допустимо, потому что:
+	#   * демо-данные обезличены (публичный датасет UCI, в списке номера строк,
+	#     а не фамилии);
+	#   * загруженные файлы обрабатываются в памяти и никуда не сохраняются,
+	#     то есть чужие данные на сервере не оседают;
+	#   * сайт закрыт от индексации (robots.txt + noindex).
+	# Ограничение нагрузки остаётся на стороне приложения: RATE_LIMIT_PER_MINUTE.
+	#
+	# Чтобы вернуть пароль — раскомментировать блок ниже и поднять caddy заново.
+	# Логин и bcrypt-хэш берутся из deploy/.env.
+	#
+	# @private not path /model /assets/* /robots.txt /favicon.ico /api/model-info /api/schema /api/health
+	# basic_auth @private {
+	# 	{$BASIC_AUTH_USER} {$BASIC_AUTH_HASH}
+	# }
+
+	reverse_proxy frontend:80
+
+	# Загружаемые файлы идут в память бэкенда, но на всякий случай ограничим
+	# размер тела на входе — чуть больше лимита приложения (10 МБ).
+	request_body {
+		max_size 12MB
+	}
+}

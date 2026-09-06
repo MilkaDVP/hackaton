@@ -1,0 +1,94 @@
+# Боевой стек: caddy (TLS + авторизация) -> frontend (nginx+статика) -> backend.
+# Наружу открыт только caddy. Запуск с сервера:
+#   cd /opt/risk && docker compose -f deploy/docker-compose.prod.yml up -d --build
+
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    image: risk-backend:prod
+    restart: unless-stopped
+    environment:
+      ARTIFACTS_DIR: /app/riskml/artifacts
+      DEMO_DATA: /app/data/student-por.csv
+      CORS_ORIGINS: https://${DOMAIN},https://www.${DOMAIN}
+      RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-60}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    expose:
+      - "8000"                       # только внутри сети, на хост не публикуется
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=4).status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 1200M            # две модели в памяти + пики на объяснениях
+    networks: [risk]
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: frontend/Dockerfile
+    image: risk-frontend:prod
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    expose:
+      - "80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 4s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    networks: [risk]
+
+  caddy:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    depends_on:
+      frontend:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+      BASIC_AUTH_USER: ${BASIC_AUTH_USER}
+      BASIC_AUTH_HASH: ${BASIC_AUTH_HASH}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data          # сертификаты переживают пересборку
+      - caddy_config:/config
+    healthcheck:
+      # Через :80 проверять нельзя — Caddy отдаёт 308 на HTTPS, и wget считает
+      # это ошибкой. Спрашиваем админский эндпоинт: он слушает только localhost
+      # внутри контейнера и отвечает, только если конфиг реально загружен.
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:2019/config/"]
+      interval: 30s
+      timeout: 4s
+      retries: 3
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    networks: [risk]
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  risk:
+    driver: bridge

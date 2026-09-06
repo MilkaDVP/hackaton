@@ -1,0 +1,18 @@
+# --- обязательные: без них solution.ipynb не запустится ---
+pandas>=2.0
+scikit-learn>=1.4
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+jupyter
+
+# --- опциональные ---
+# Ноутбук работает и без них: импорты обёрнуты в try/except, и при отсутствии
+# библиотеки используется фолбэк (HistGradientBoostingClassifier вместо бустингов,
+# permutation importance вместо SHAP). Строка про SMOTE в разделе 11.7 при
+# отсутствии imbalanced-learn просто пропускается.
+lightgbm
+xgboost
+catboost
+shap
+imbalanced-learn

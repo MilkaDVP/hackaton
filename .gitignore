@@ -1,22 +1,22 @@
-# кэш тяжёлых расчётов ноутбука — пересоздаётся автоматически
-cache/
-
-# обученные модели — пересоздаются блоком 21 ноутбука
-models/
-
-# python
-__pycache__/
-*.py[cod]
+# окружения
 .venv/
-venv/
-env/
+node_modules/
+frontend/dist/
 
-# jupyter
-.ipynb_checkpoints/
-*.nbconvert.ipynb
+# кэши
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+catboost_info/
 
-# редакторы / ос
-.vscode/
-.idea/
+# служебное
+.env
+*.log
 .DS_Store
 Thumbs.db
+
+# ВАЖНО: riskml/artifacts/ НЕ игнорируется — модели коммитятся намеренно,
+# чтобы `docker compose up` работал без переобучения.
+
+deploy/.env

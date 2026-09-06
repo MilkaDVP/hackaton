@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 250 250 249;
+    --surface: 255 255 255;
+    --raised: 245 245 244;
+    --line: 231 229 228;
+    --ink: 28 25 23;
+    --muted: 87 83 78;
+    --faint: 120 113 108;
+    --accent: 59 91 219;
+    --accent-soft: 232 236 253;
+    /* Шкала риска — намеренно НЕ светофор: от спокойного сине-серого
+       к приглушённому терракотовому. Красный «стоп» здесь читался бы
+       как клеймо на человеке. */
+    --risk-low: 100 116 139;
+    --risk-mid: 202 138 4;
+    --risk-high: 194 91 52;
+  }
+
+  :root[data-theme="dark"] {
+    --bg: 12 13 16;
+    --surface: 23 24 28;
+    --raised: 31 33 38;
+    --line: 47 49 56;
+    --ink: 237 236 234;
+    --muted: 168 165 160;
+    --faint: 133 130 126;
+    --accent: 129 152 247;
+    --accent-soft: 30 38 68;
+    --risk-low: 129 140 160;
+    --risk-mid: 214 158 46;
+    --risk-high: 214 118 79;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-bg text-ink antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Табличные цифры везде, где числа сравнивают глазами */
+  .nums,
+  td.nums,
+  th.nums {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-raised;
+  }
+  .skeleton::after {
+    @apply absolute inset-0 -translate-x-full;
+    content: "";
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--ink) / 0.06),
+      transparent
+    );
+    animation: shimmer 1.6s infinite;
+  }
+
+  .link {
+    @apply text-accent underline-offset-4 hover:underline;
+  }
+}
